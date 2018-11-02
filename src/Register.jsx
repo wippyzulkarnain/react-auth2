@@ -16,6 +16,7 @@ class Register extends Component {
     });
   };
   render() {
+    const { first_name, last_name, email, password } = this.state;
     return (
       <div>
         <h1>Register</h1>
@@ -25,29 +26,37 @@ class Register extends Component {
           placeholder="First Name"
           value={this.state.first_name}
           onChange={this.handleOnChange}
-        /> <br/>
+        />{" "}
+        <br />
         <input
           type="text"
           name="last_name"
           placeholder="Last Name"
           value={this.state.last_name}
           onChange={this.handleOnChange}
-        /> <br/>
+        />{" "}
+        <br />
         <input
           type="email"
           name="email"
           placeholder="Email"
           value={this.state.email}
           onChange={this.handleOnChange}
-        /> <br/>
+        />{" "}
+        <br />
         <input
           type="password"
           name="password"
           placeholder="Password"
           value={this.state.password}
           onChange={this.handleOnChange}
-        /> <br/>
-        <button>Register</button>
+        />{" "}
+        <br />
+        <button
+          onClick={() => this.props.handleRegister(first_name,last_name,email,password)}
+        >
+          Register
+        </button>
       </div>
     );
   }

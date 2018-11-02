@@ -18,6 +18,7 @@ class App extends Component {
       .then(res => {
         console.log(res.data.message);
         if (res.data.message === "You are logged in") {
+          localStorage.setItem("token", res.data.token)
           this.setState({
             isAuthenticated: true
           });
@@ -36,14 +37,18 @@ class App extends Component {
     };
     axios
       .post(`https://impact-byte-demo.herokuapp.com/accounts/register`, body)
-      .then(res => console.log(res))
+      .then(res => {if (res.data.message === "insert account data success") {
+        alert("Sukses!!!!")
+      } else {
+        alert("udah pernah daftar!");
+      }})
       .catch(err => console.log(err));
   };
   render() {
     return (
       <div>
         <Login handleLogin={this.handleLogin} />
-        <Register />
+        <Register handleRegister={this.handleRegister}/>
       </div>
     );
   }
